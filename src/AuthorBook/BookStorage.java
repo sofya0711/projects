@@ -76,8 +76,10 @@ public class BookStorage {
 
     public void deleteBookByAuthor(Author email) {
         for (int i = 0; i < size; i++) {
-            if (books[i].getAuthor().equals(email)) {
-                deleteBook(i);
+            for (int j = 0; j < size; j++) {
+                if (books[i].getAuthor().equals(email)) {
+                    deleteBook(i);
+                }
             }
         }
     }
