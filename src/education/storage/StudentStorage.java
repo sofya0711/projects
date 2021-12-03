@@ -1,4 +1,7 @@
-package education;
+package education.storage;
+
+import education.model.Student;
+import education.util.ArrayUtil;
 
 public class StudentStorage {
 
@@ -32,17 +35,12 @@ public class StudentStorage {
         }
     }
 
-    private void deleteByIndex(int index) {
-        for (int i = index + 1; i < size; i++) {
-            students[i - 1] = students[i];
-        }
-        size--;
-    }
 
     public Student deleteStudent(String email) {
         for (int i = 0; i < size; i++) {
             if (students[i].getEmail().equals(email)) {
-                deleteByIndex(i);
+                ArrayUtil.deleteByIndex(students, i, size);
+                size--;
             }
         }
         return null;

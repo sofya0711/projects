@@ -1,4 +1,7 @@
-package education;
+package education.storage;
+
+import education.model.Lesson;
+import education.util.ArrayUtil;
 
 public class LessonStorage {
 
@@ -35,17 +38,11 @@ public class LessonStorage {
         return null;
     }
 
-    private void deleteByIndex(int index) {
-        for (int i = index + 1; i < size; i++) {
-            lessons[i - 1] = lessons[i];
-        }
-        size--;
-    }
 
     public Lesson deleteByName(String name) {
         for (int i = 0; i < size; i++) {
             if (lessons[i].getName().equals(name)) {
-                deleteByIndex(i);
+                ArrayUtil.deleteByIndex(lessons, i, size);
             }
         }
         return null;

@@ -1,5 +1,8 @@
-package education;
+package education.model;
 
+import education.util.DateUtil;
+
+import java.util.Date;
 import java.util.Objects;
 
 public class Student {
@@ -10,17 +13,19 @@ public class Student {
     private String email;
     private String phone;
     private Lesson lesson;
+    private Date registeredDate;
 
-    public Student(String name, String surname, int age, String email, String phone, Lesson lesson) {
+    public Student(String name, String surname, int age, String email, String phone, Lesson lesson, Date registeredDate) {
         this.name = name;
         this.surname = surname;
         this.age = age;
         this.email = email;
         this.phone = phone;
         this.lesson = lesson;
+        this.registeredDate = registeredDate;
     }
 
-    public Student(String studentDatum, String datum, int age, String s, String studentDatum1, String datum1, String s1) {
+    public Student() {
     }
 
     public String getName() {
@@ -71,17 +76,25 @@ public class Student {
         this.lesson = lesson;
     }
 
+    public Date getRegisteredDate() {
+        return registeredDate;
+    }
+
+    public void setRegisteredDate(Date registeredDate) {
+        this.registeredDate = registeredDate;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Student student = (Student) o;
-        return age == student.age && Objects.equals(name, student.name) && Objects.equals(surname, student.surname) && Objects.equals(email, student.email) && Objects.equals(phone, student.phone) && Objects.equals(lesson, student.lesson);
+        return age == student.age && Objects.equals(name, student.name) && Objects.equals(surname, student.surname) && Objects.equals(email, student.email) && Objects.equals(phone, student.phone) && Objects.equals(lesson, student.lesson) && Objects.equals(registeredDate, student.registeredDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, surname, age, email, phone, lesson);
+        return Objects.hash(name, surname, age, email, phone, lesson, registeredDate);
     }
 
     @Override
@@ -93,6 +106,7 @@ public class Student {
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
                 ", lesson=" + lesson +
+                ", registeredDate=" + DateUtil.dateToString(registeredDate) +
                 '}';
     }
 }
