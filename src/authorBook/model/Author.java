@@ -1,5 +1,6 @@
-package AuthorBook;
+package authorBook.model;
 
+import java.util.Date;
 import java.util.Objects;
 
 public class Author {
@@ -9,13 +10,15 @@ public class Author {
     private int age;
     private String email;
     private String gender;
+    private Date dateOfBirth;
 
-    public Author(String name, String surname, int age, String email, String gende) {
+    public Author(String name, String surname, int age, String email, String gender, Date dateOfBirth) {
         this.name = name;
         this.surname = surname;
         this.age = age;
         this.email = email;
-        this.gender = gende;
+        this.gender = gender;
+        this.dateOfBirth = dateOfBirth;
     }
 
     public Author() {
@@ -57,8 +60,16 @@ public class Author {
         return gender;
     }
 
-    public void setGender(String gende) {
-        this.gender = gende;
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public Date getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 
     @Override
@@ -66,12 +77,12 @@ public class Author {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Author author = (Author) o;
-        return age == author.age && Objects.equals(name, author.name) && Objects.equals(surname, author.surname) && Objects.equals(email, author.email) && Objects.equals(gender, author.gender);
+        return age == author.age && Objects.equals(name, author.name) && Objects.equals(surname, author.surname) && Objects.equals(email, author.email) && Objects.equals(gender, author.gender) && Objects.equals(dateOfBirth, author.dateOfBirth);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, surname, age, email, gender);
+        return Objects.hash(name, surname, age, email, gender, dateOfBirth);
     }
 
     @Override
@@ -81,7 +92,8 @@ public class Author {
                 ", surname='" + surname + '\'' +
                 ", age=" + age +
                 ", email='" + email + '\'' +
-                ", gende='" + gender + '\'' +
+                ", gender='" + gender + '\'' +
+                ", dateOfBirth=" + dateOfBirth +
                 '}';
     }
 }

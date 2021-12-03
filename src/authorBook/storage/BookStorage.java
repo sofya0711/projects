@@ -1,4 +1,10 @@
-package AuthorBook;
+package authorBook.storage;
+
+import authorBook.model.Author;
+import authorBook.model.Book;
+import authorBook.util.ArrayUtil;
+
+import java.util.ArrayDeque;
 
 public class BookStorage {
 
@@ -57,28 +63,22 @@ public class BookStorage {
         }
     }
 
-    public void deleteBook(int index) {
-        for (int i = index + 1; i < size; i++) {
-            books[i - 1] = books[i];
-        }
-        size--;
-    }
 
-    public Book deleteBookByTitle(String title) {
+    public Book deleteBookByTitle(Book book) {
         for (int i = 0; i < size; i++) {
-            if (books[i].getTitle().equals(title)) {
-                deleteBook(i);
+            if (books[i].equals(book)) {
+                ArrayUtil.deleteByIndex(books, i, size);
             }
         }
         return null;
     }
 
 
-    public void deleteBookByAuthor(Author email) {
+    public void deleteBookByAuthor(Author author) {
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
-                if (books[i].getAuthor().equals(email)) {
-                    deleteBook(i);
+                if (books[i].getAuthor().equals(author)) {
+                    ArrayUtil.deleteByIndex(books, i, size);
                 }
             }
         }

@@ -1,4 +1,7 @@
-package AuthorBook;
+package authorBook.storage;
+
+import authorBook.model.Author;
+import authorBook.util.ArrayUtil;
 
 public class AuthorStorage {
 
@@ -52,19 +55,15 @@ public class AuthorStorage {
         return null;
     }
 
-    public void deleteAuthor(int index) {
-        for (int i = index + 1; i < size; i++) {
-            authors[i - 1] = authors[i];
-        }
-        size--;
-    }
 
-    public Author deleteAuthorByEmail(String email) {
+    public void deleteAuthorByEmail(Author author) {
         for (int i = 0; i < size; i++) {
-            if (authors[i].getEmail().equals(email)) {
-                deleteAuthor(i);
+            if (authors[i].equals(author)) {
+                ArrayUtil.deleteByIndex(authors, i, size);
+                size--;
+                break;
             }
         }
-        return null;
     }
 }
+

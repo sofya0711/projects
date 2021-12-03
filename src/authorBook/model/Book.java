@@ -1,9 +1,10 @@
-package AuthorBook;
+package authorBook.model;
 
 import java.util.Objects;
 
 public class Book {
 
+//    private String serialId;
     private String title;
     private String description;
     private double price;
