@@ -2,10 +2,11 @@ package education.model;
 
 import education.util.DateUtil;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
-public class Student {
+public class Student implements Serializable {
 
     private String name;
     private String surname;
@@ -26,6 +27,9 @@ public class Student {
     }
 
     public Student() {
+    }
+
+    public Student(String poxos, String poxosyan, int age, String email, String phone, Lesson lesson, String s) {
     }
 
     public String getName() {

@@ -2,37 +2,33 @@ package education.storage;
 
 import education.model.Lesson;
 import education.util.ArrayUtil;
+import education.util.FileUtil;
+
+import java.util.LinkedList;
+import java.util.List;
 
 public class LessonStorage {
 
-    private Lesson[] lessons = new Lesson[10];
-    private int size;
+    private List<Lesson> lessons = new LinkedList<>();
 
 
     public void add(Lesson lesson) {
-        if (lessons.length == size) {
-            extend();
-        }
-        lessons[size++] = lesson;
+        lessons.add(lesson);
+        serialize();
     }
 
-    private void extend() {
-        Lesson[] tmp = new Lesson[lessons.length + 10];
-        System.arraycopy(lessons, 0, tmp, 0, lessons.length);
-        lessons = tmp;
-    }
 
     public void print() {
-        for (int i = 0; i < size; i++) {
-            System.out.println(lessons[i]);
+        for (Lesson lesson : lessons) {
+            System.out.println(lesson);
         }
     }
 
 
     public Lesson getByName(String name) {
-        for (int i = 0; i < size; i++) {
-            if (lessons[i].getName().equals(name)) {
-                return lessons[i];
+        for (Lesson lesson : lessons) {
+            if (lesson.getName().contains(name)) {
+                return lesson;
             }
         }
         return null;
@@ -40,11 +36,16 @@ public class LessonStorage {
 
 
     public Lesson deleteByName(String name) {
-        for (int i = 0; i < size; i++) {
-            if (lessons[i].getName().equals(name)) {
-                ArrayUtil.deleteByIndex(lessons, i, size);
+        for (Lesson lesson : lessons) {
+            if (lesson.getName().equals(name)) {
+                lessons.remove(lesson);
             }
         }
+        serialize();
         return null;
+    }
+
+    private void serialize() {
+        FileUtil.serializeLessons(lessons);
     }
 }
